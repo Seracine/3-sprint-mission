@@ -51,19 +51,19 @@ const product = new Product(
     productInfo.images,
     0
 );
-let id = Math.floor(Math.random()*101 + 1500)
-let id2 = Math.floor(Math.random()*101 + 1000)
+let articleID = Math.floor(Math.random() * 101 + 1500)
+let productID = Math.floor(Math.random() * 101 + 1000)
 
-const searchProduct = await getProduct(id2)
-const searchArticle = await getArticle(id)
+const searchProduct = await getProduct(productID)
+const searchArticle = await getArticle(articleID)
 const productList = await getProductList(searchpage)
 const articleList = await getArticleList(searchpage)
 const productPost = await createProduct(productInfo)
 const articlePost = await createArticle(articleInfo)
 const articlePatch = await patchArticle(1512, articleChangedInfo)
 const productPatch = await patchProduct(1063, productInfo2)
-const deleteProductPage = await deleteProduct(id2)
-const deleteArticlePage = await deleteArticle(id)
+const deleteProductPage = await deleteProduct(productID)
+const deleteArticlePage = await deleteArticle(articleID)
 const tagFilter = await getProductList(searchpage)
     .then((data) => {
         try {
@@ -85,7 +85,7 @@ const tagFilter = await getProductList(searchpage)
     })
 
 console.log('ProductList 결과:', productList)
-console.log('getProduct 결과:', searchProduct, `${id2}`)
+console.log('getProduct 결과:', searchProduct, `${productID}`)
 console.log('Product Post 결과:', productPost)
 console.log('Product Patch 결과:', productPatch)
 console.log('Product Delete 결과:', deleteProductPage)
@@ -107,7 +107,7 @@ tagFilter.forEach(item => {
 console.log('')
 
 console.log('ArticleList 결과:', articleList)
-console.log('Article 결과:', searchArticle, `${id}`)
+console.log('Article 결과:', searchArticle, `${articleID}`)
 console.log('Article Post 결과:', articlePost)
 console.log('Article Patch 결과:', articlePatch)
 console.log('Article Delete 결과:', deleteArticlePage)
