@@ -2,57 +2,89 @@ import axios from "axios";
 
 const BASE_URL = "https://panda-market-api-crud.vercel.app/articles"
 const instance = axios.create({
-  baseURL : BASE_URL,
+  baseURL: BASE_URL,
   timeout: 7_000
 })
 
 export const getArticleList = async (params = {}) => {
-  try{
-    const res = await instance.get('/', {params})
-    return res.data; //응답 본문
+  try {
+    const res = await instance.get('/', { params })
+      .then(response => {
+        console.log(response.data)
+      })
   } catch (error) {
-    console.error('ArticleList 결과:' + ' ' + '에러 발생', error.message)
+    if (error.response) {
+      console.error('ArticleList 결과:' + ' ' + '에러 발생', error.response.status, error.response.statusText)
+    } else {
+      console.error('Axios error:', error.message)
+    }
   }
 }
 
 export const getArticle = async (id) => {
-  try{
+  try {
     const res = await instance.get(`/${id}`)
-    return res.data;
+      .then(response => {
+        console.log(response.data)
+      })
   } catch (error) {
-    console.error('Article 결과: ' + id + ' ' + '게시글 불러올 수 없음', error.message)
+    if (error.response) {
+      console.error('Article 결과: ' + id + ' ' + '게시글 불러올 수 없음', error.response.status, error.response.statusText)
+    } else {
+      console.error('Axios error:', error.message)
+    }
   }
 }
 
 export const deleteArticle = async (id) => {
-  try{
+  try {
     const res = await instance.delete(`/${id}`)
-    return res.data;
+      .then(response => {
+        console.log(response.data)
+      })
   } catch (error) {
-    console.error(id + ' ' + '게시글 삭제 불가', error.message)
+    if (error.response) {
+      console.error('Article Delete 결과:' + id + ' ' + '이미 삭제된 게시글입니다.', error.response.status, error.response.statusText)
+    } else {
+      console.error('Axios error:', error.message)
+    }
   }
 }
 
-export const createArticle = async ({title, content, image}) => {
-  try{
-    const res = await instance.post('/',{
+export const createArticle = async ({ title, content, image }) => {
+  try {
+    const res = await instance.post('/', {
       title,
       content,
-      image})
-    return res.data;
+      image
+    })
+      .then(response => {
+        console.log(response.data)
+      })
   } catch (error) {
-    console.error('Article Post 결과: ' + '에러 발생', error.message)
+    if (error.response) {
+      console.error('Article Post 결과: ' + '에러 발생', error.response.status, error.response.statusText)
+    } else {
+      console.error('Axios error:', error.message)
+    }
   }
 }
 
-export const patchArticle = async (id, {title, content, image}) => {
-  try{
-    const res = await instance.patch(`/${id}`,{
+export const patchArticle = async (id, { title, content, image }) => {
+  try {
+    const res = await instance.patch(`/${id}`, {
       title,
       content,
-      image})
-    return res.data
+      image
+    })
+    .then(response => {
+        console.log(response.data)
+      })
   } catch (error) {
-    console.error(id + ' ' + '기사 수정 불가', error.message)
+    if (error.response) {
+      console.error('Article Patch 결과:' + id + ' ' + '기사 수정 불가', error.response.status, error.response.statusText)
+    } else {
+      console.error('Axios error:', error.message)
+    }
   }
 }
