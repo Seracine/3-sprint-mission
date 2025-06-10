@@ -11,7 +11,7 @@ export const getProductList = async (params = {}) => {
     const res = await instance.get('/', {params})
     return res.data;
   } catch (error) {
-    console.error('에러 발생', error.message);
+    console.error('ProductList 결과: ' + '에러 발생', error.message);
   }
 }
 export const getProduct = async (id) => {
@@ -19,7 +19,7 @@ export const getProduct = async (id) => {
     const res = await instance.get(`${id}`)
     return res.data;
   } catch (error) {
-    console.error('에러 발생', error.message);
+    console.error('getProduct 결과:' + id + ' ' + '에러 발생', error.message);
   }
 }
 export const deleteProduct = async (id) => {
@@ -27,7 +27,7 @@ export const deleteProduct = async (id) => {
     const res = await instance.delete(`${id}`)
     return res.data
   } catch (error) {
-    console.error('제품 삭제 불가', error.message)
+    console.error('Product Delete 결과:' + id + ' ' + '제품 삭제 불가', error.message)
   }
 }
 export const createProduct = async ({name, description, price, tags, images}) => {
@@ -40,7 +40,7 @@ export const createProduct = async ({name, description, price, tags, images}) =>
       images})
     return res.data;
   } catch (error) {
-    console.error('에러 발생', error.message)
+    console.error('Product Post 결과:' + '에러 발생', error.message)
   }
 }
 export const patchProduct = async (id, {name, description, price, tags, images}) => {
@@ -53,6 +53,6 @@ export const patchProduct = async (id, {name, description, price, tags, images})
       images})
     return res.data
   } catch (error) {
-    console.error('제품 수정 불가', error.message)
+    console.error(id + ' ' + '제품 수정 불가', error.message)
   }
 }

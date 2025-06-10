@@ -1,4 +1,4 @@
-import { getArticleList, getArticle, deleteArticle, createArticle, patchArticle } from "./ArticleService.js";
+import { getArticleList, getArticle, createArticle, patchArticle, deleteArticle } from "./ArticleService.js";
 import { patchProduct, createProduct, deleteProduct, getProduct, getProductList } from "./ProductService.js";
 import Product, { ElectronicProduct } from "./Product.js";
 import Article from "./Article.js"
@@ -38,12 +38,6 @@ const productInfo2 = {
     images: 'https://example.com/...://'
 }
 
-const productList = await getProductList(searchpage)
-const articleList = await getArticleList(searchpage)
-const productPost = await createProduct(productInfo)
-const articlePost = await createArticle(articleInfo)
-const articlePatch = await patchArticle(1512, articleChangedInfo)
-const productPatch = await patchProduct(1063, productInfo2)
 const article = new Article(
     articleInfo.title,
     articleInfo.content,
@@ -57,7 +51,19 @@ const product = new Product(
     productInfo.images,
     0
 );
+let id = Math.floor(Math.random()*101 + 1500)
+let id2 = Math.floor(Math.random()*101 + 1000)
 
+const searchProduct = await getProduct(id2)
+const searchArticle = await getArticle(id)
+const productList = await getProductList(searchpage)
+const articleList = await getArticleList(searchpage)
+const productPost = await createProduct(productInfo)
+const articlePost = await createArticle(articleInfo)
+const articlePatch = await patchArticle(1512, articleChangedInfo)
+const productPatch = await patchProduct(1063, productInfo2)
+const deleteProductPage = await deleteProduct(id2)
+const deleteArticlePage = await deleteArticle(id)
 const tagFilter = await getProductList(searchpage)
     .then((data) => {
         try {
@@ -79,10 +85,10 @@ const tagFilter = await getProductList(searchpage)
     })
 
 console.log('ProductList 결과:', productList)
-console.log('getProduct 결과:', await getProduct(1016))
+console.log('getProduct 결과:', searchProduct, `${id2}`)
 console.log('Product Post 결과:', productPost)
 console.log('Product Patch 결과:', productPatch)
-// console.log('Product Delete 결과:', await deleteProduct(580))
+console.log('Product Delete 결과:', deleteProductPage)
 
 console.log(product._name, product._description, product._price, product._favoriteCount);
 product.favorite();
@@ -101,16 +107,13 @@ tagFilter.forEach(item => {
 console.log('')
 
 console.log('ArticleList 결과:', articleList)
-console.log('Article 결과:', await getArticle(1509))
+console.log('Article 결과:', searchArticle, `${id}`)
 console.log('Article Post 결과:', articlePost)
 console.log('Article Patch 결과:', articlePatch)
-// console.log('Article Delete 결과:', await deleteArticle(1430))
+console.log('Article Delete 결과:', deleteArticlePage)
 
 console.log(article.articleTitle, article.articleWriter, article.likeCount);
 article.like();
 console.log(article.likeCount);
 
 console.log('프로그램 종료')
-
-//Article List나 Product List 불러올 때 불러와지는 값은 랜덤인지 앞에서부터 페이지 숫자대로인지
-//ID 봤을 땐 아이디 순서대로일 거라는데 순서가 자꾸 뒤로 밀림. 앞에 게 삭제돼서?
