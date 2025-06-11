@@ -1,12 +1,19 @@
 ## 요구사항
 
 ### 기본
-- [x] 스프린트 미션 요구사항 체크리스트
-- [ ] 기본 항목 2
+- [x] Product 클래스와 ElectronicProduct 클래스 생성
+- [x] favorite 메소드
+- [x] Article 클래스 생성
+- [x] getArticleList, getArticle, patchArticle, deleteArticle 함수
+- [x] fetch 혹은 axios 이용, 에러 메세지 출력
+- [x] .then() 메소드 이용, .catch() 이용
+- [x] getProductList(), getProduct(), createProduct, patchProduct(), deleteProduct() 함수
+- [x] async / await 비동기 처리, try/catch 오류 처리
+- [x] products 배열 / 인스턴스 생성
+- [x] ProductService.js ArticleService.js 파일 분리
 
 ### 심화
-- [ ] 심화 항목 1
-- [ ] 심화 항목 2
+- [ ] Article 클래스에 createdAt 프로퍼티 생성
 
 ## 주요 변경사항
 - 
