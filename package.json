@@ -1,0 +1,19 @@
+{
+  "name": "sprint1",
+  "version": "1.0.0",
+  "description": "codeit mission 1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/selentia/nb3"
+  },
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "selentia",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.9.0"
+  }
+}
