@@ -24,7 +24,7 @@ Content-Type: application/json
 }
 
 ###
-PATCH http://localhost:3000/products/fbafd388-50e4-442f-ab72-b29ad00e25e8
+PATCH http://localhost:3000/products/646b0dbc-acaa-499b-982b-9bf035b102bb
 Content-Type: application/json
 
 {
@@ -34,10 +34,13 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/products/28a30bd7-8861-4a69-9ef6-f8d5d019f5db
+DELETE http://localhost:3000/products/646b0dbc-acaa-499b-982b-9bf035b102bb
 
 
-### 확인 필요
+### 
+GET http://localhost:3000/products/comment
+
+### 
 GET http://localhost:3000/products/comment?cursor=952f0e55-4e46-40c2-8f2f-654d6a5e36bd
 
 ###
@@ -45,13 +48,13 @@ POST http://localhost:3000/products/comment
 Content-Type: application/json
 
 {
-    "id" : "28a30bd7-8861-4a69-9ef6-f8d5d019f5db",
+    "id" : "a39a8fac-208d-4534-a841-35e2c33e9969",
     "content" : "댓글 생성"
 }
 
 
 ###
-PATCH http://localhost:3000/products/comment/d6c4bb87-e95c-422b-a5bc-abf8063c00f5
+PATCH http://localhost:3000/products/comment/a31fda93-7d65-4832-ba9d-3e09078a185a
 Content-Type: application/json
 
 {

@@ -17,7 +17,7 @@ Content-Type: application/json
 }
 ###
 
-PATCH http://localhost:3000/articles/13b158ad-c421-453e-8af1-ceff8d989b2f
+PATCH http://localhost:3000/articles/c0d896fd-927b-4fc0-a2a1-580ec6848e45
 Content-Type: application/json
 
 {
@@ -27,7 +27,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:3000/articles/13b158ad-c421-453e-8af1-ceff8d989b2f
+DELETE http://localhost:3000/articles/3687fbf5-6678-41f2-af93-3b2385ee1752
 
 ###
 GET http://localhost:3000/articles/comment
@@ -45,12 +45,12 @@ Content-Type: application/json
 }
 
 ###
-PATCH  http://localhost:3000/articles/comment/f3afcfbf-d255-4019-830d-c8e8e43efce8
+PATCH  http://localhost:3000/articles/comment/5ba78525-dc58-47a2-b71d-be679c107d25
 Content-Type: application/json
 
 {
     "content" : "게시글 댓글 수정2"
 }
 ###
-DELETE http://localhost:3000/articles/comment/f3afcfbf-d255-4019-830d-c8e8e43efce8
+DELETE http://localhost:3000/articles/comment/d13ffb0d-2065-4258-8a41-73d6b91e0192
 
