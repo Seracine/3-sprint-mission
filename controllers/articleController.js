@@ -28,7 +28,6 @@ const articleController = {
         const id = req.params.id;
         const commentBody = {
             content: req.body.content,
-            articleId: req.body.id
         }
         const comment = await updateComment(commentBody, id)
         res.json(comment)
@@ -44,7 +43,6 @@ const articleController = {
         const { page = 1, limit = 10, order = 'recent', keyword = "" } = req.query
         const articles = await findArticles(page, limit, order, keyword)
 
-        // if (products === []) => 결과가 없으면 처리하는 로직 추가해도 될듯
         res.send(articles)
     },
 

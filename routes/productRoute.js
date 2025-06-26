@@ -1,6 +1,6 @@
 import express from 'express';
 import validations from '../middlewares/validations.js';
-import productController from '../controllers/productControllr.js';
+import productController from '../controllers/productController.js';
 
 const productRouter = express.Router();
 

@@ -29,6 +29,10 @@ const productController = {
     patchComment : async (req, res) => {
         const id = req.params.id;
 
+        const commentBody = {
+            content: req.body.content,
+        }
+
         const comment = await updateComment(commentBody, id);
         res.json(comment)
     },
