@@ -14,7 +14,7 @@ const productController = {
         res.status(201).json({ data: comments, nextCursor })
     },
 
-    postComment : async (req, res) => { // product랑 article이랑 별도로 엔드포인트 생성
+    postComment : async (req, res) => {
 
         const commentBody = {
             content: req.body.content,
@@ -47,7 +47,6 @@ const productController = {
         const { page = 1, limit = 10, order = 'recent', keyword = "" } = req.query
         const products = await findProducts(page, limit, order, keyword);
 
-        // if (products === []) => 결과가 없으면 처리하는 로직 추가해도 될듯
         res.send(products)
     },
 
