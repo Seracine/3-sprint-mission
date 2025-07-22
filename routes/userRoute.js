@@ -4,7 +4,7 @@ import userController from '../controllers/userController.js';
 
 const userRouter = express.Router();
 
-userRouter.route('/')
+userRouter.route('/sign-up')
     .post(validations.createUserValidation, userController.postUser)
 
 export default userRouter;
