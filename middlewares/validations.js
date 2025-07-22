@@ -3,6 +3,7 @@ import {
     CreateArticleStruct, PatchArticleStruct,
     CreateProductStruct, PatchProductStruct,
     CreateCommentStruct, PatchCommentStruct,
+    CreateUserStruct
 } from '../prisma/structs.js'
 
 function validateWithStruct(struct) {
@@ -23,5 +24,6 @@ export default {
     patchProductValidation: validateWithStruct(PatchProductStruct),
     createCommentValidation: validateWithStruct(CreateCommentStruct),
     patchCommentValidation: validateWithStruct(PatchCommentStruct),
+    createUserValidation: validateWithStruct(CreateUserStruct),
 };
 
