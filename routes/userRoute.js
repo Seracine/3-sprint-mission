@@ -1,0 +1,10 @@
+import express from 'express';
+import validations from '../middlewares/validations.js';
+import userController from '../controllers/userController.js';
+
+const userRouter = express.Router();
+
+userRouter.route('/')
+    .post(validations.createUserValidation, userController.postUser)
+
+export default userRouter;
