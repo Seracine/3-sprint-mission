@@ -4,8 +4,8 @@ const hashPassword = (password) => {
     return bcrypt.hashSync(password, 10);
 }
 
-const checkPassword = (password, hash) => {
+const verifyPassword = (password, hash) => {
     return bcrypt.compareSync(password, hash); // boolean
 }
 
-export { hashPassword, checkPassword }
+export { hashPassword, verifyPassword }
