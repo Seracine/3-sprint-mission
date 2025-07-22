@@ -10,7 +10,15 @@ class UserRepository {
             }
         })
         return user;
-    }
+    };
+
+    findByEmail = async (email) => {
+        const user = await prisma.user.findUniqueOrThrow({
+            where: { email }
+        })
+
+        return user;
+    };
 };
 
 export default new UserRepository();
