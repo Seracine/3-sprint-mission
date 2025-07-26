@@ -5,7 +5,6 @@ import auth from '../middlewares/auth.js'
 
 const productRouter = express.Router();
 
-
 productRouter.route('/comment')
     .get(productController.getComments)
     .post(validations.createCommentValidation, productController.postComment)

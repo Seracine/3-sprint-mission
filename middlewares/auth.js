@@ -1,5 +1,6 @@
 import { expressjwt } from 'express-jwt'
 import productRepository from '../repositories/productRepository.js'
+import articleRepository from '../repositories/articleRepository.js'
 
 const verifyAccessToken = expressjwt({
   secret: process.env.JWT_SECRET,
@@ -30,6 +31,29 @@ const verifyProductAuth = async (req, res, next) => {
   }
 }
 
+const verifyArticleAuth = async (req, res, next) => {
+  const { id: articleId } = req.params;
+  try {
+    const article = await articleRepository.getById(articleId);
+
+    if (!article) {
+      const error = new Error('Article not found');
+      error.code = 404;
+      throw error;
+    }
+
+    if (article.userId !== req.user.userId) {
+      const error = new Error('Forbidden');
+      error.code = 403;
+      throw error;
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
-  verifyAccessToken, verifyProductAuth
+  verifyAccessToken, verifyProductAuth, verifyArticleAuth
 }

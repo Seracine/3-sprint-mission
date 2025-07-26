@@ -1,9 +1,10 @@
 import express from 'express';
 import validations from '../middlewares/validations.js';
 import articleController from '../controllers/articleController.js';
+import auth from '../middlewares/auth.js'
 
 const articleRouter = express.Router()
-articleRouter.use(express.json())
+// articleRouter.use(express.json())
 
 articleRouter.route('/comment')
     .get(articleController.getComments)
@@ -16,12 +17,12 @@ articleRouter.route('/comment/:id')
 
 articleRouter.route('/')
     .get(articleController.getArticles)
-    .post(validations.createArticleValidation, articleController.postArticle)
+    .post(auth.verifyAccessToken, validations.createArticleValidation, articleController.postArticle)
 
 articleRouter.route('/:id')
     .get(articleController.getArticleById)
-    .patch(validations.patchArticleValidation, articleController.patchArticle)
-    .delete(articleController.deleteArticle)
+    .patch(auth.verifyAccessToken, auth.verifyArticleAuth, validations.patchArticleValidation, articleController.patchArticle)
+    .delete(auth.verifyAccessToken, auth.verifyArticleAuth, articleController.deleteArticle)
 
 
 export default articleRouter;

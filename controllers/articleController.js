@@ -47,6 +47,7 @@ const articleController = {
     },
 
     postArticle : async (req, res) => {
+        req.body.userId = req.user.userId;
         const article = await createArticle(req);
         res.status(201).json(article)
     },
