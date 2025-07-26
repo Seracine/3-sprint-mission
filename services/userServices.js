@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken'
-import userRepository from '../repositorys/userRepository.js';
+import userRepository from '../repositories/userRepository.js';
 import { hashPassword, verifyPassword } from '../utils/passwordHash.js';
 
 /**
