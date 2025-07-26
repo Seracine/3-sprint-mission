@@ -51,6 +51,7 @@ const productController = {
     },
 
     postProduct : async (req, res) => {
+        req.body.userId = req.user.userId;
         const product = await createProduct(req);
         res.status(201).json(product)
     },

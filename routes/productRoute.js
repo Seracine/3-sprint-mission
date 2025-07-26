@@ -20,7 +20,7 @@ productRouter.route('/')
 
 productRouter.route('/:id')
     .get(productController.getProductById)
-    .patch(auth.verifyAccessToken, validations.patchProductValidation, productController.patchProduct)
-    .delete(auth.verifyAccessToken, productController.deleteProduct)
+    .patch(auth.verifyAccessToken, auth.verifyProductAuth, validations.patchProductValidation, productController.patchProduct)
+    .delete(auth.verifyAccessToken, auth.verifyProductAuth, productController.deleteProduct)
 
 export default productRouter;

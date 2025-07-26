@@ -1,4 +1,5 @@
 import { expressjwt } from 'express-jwt'
+import productRepository from '../repositories/productRepository.js'
 
 const verifyAccessToken = expressjwt({
   secret: process.env.JWT_SECRET,
@@ -6,6 +7,29 @@ const verifyAccessToken = expressjwt({
   requestProperty: 'user'
 })
 
+const verifyProductAuth = async (req, res, next) => {
+  const { id: productId } = req.params;
+  try {
+    const product = await productRepository.getById(productId);
+
+    if (!product) {
+      const error = new Error('Product not found');
+      error.code = 404;
+      throw error;
+    }
+
+    if (product.userId !== req.user.userId) {
+      const error = new Error('Forbidden');
+      error.code = 403;
+      throw error;
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
-  verifyAccessToken,
+  verifyAccessToken, verifyProductAuth
 }
