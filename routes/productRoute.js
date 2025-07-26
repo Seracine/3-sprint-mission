@@ -1,6 +1,7 @@
 import express from 'express';
 import validations from '../middlewares/validations.js';
 import productController from '../controllers/productController.js';
+import auth from '../middlewares/auth.js'
 
 const productRouter = express.Router();
 
@@ -15,11 +16,11 @@ productRouter.route('/comment/:id')
 
 productRouter.route('/')
     .get(productController.getProducts)
-    .post(validations.createProductValidation, productController.postProduct)
+    .post(auth.verifyAccessToken, validations.createProductValidation, productController.postProduct)
 
 productRouter.route('/:id')
     .get(productController.getProductById)
-    .patch(validations.patchProductValidation, productController.patchProduct)
-    .delete(productController.deleteProduct)
+    .patch(auth.verifyAccessToken, validations.patchProductValidation, productController.patchProduct)
+    .delete(auth.verifyAccessToken, productController.deleteProduct)
 
 export default productRouter;
