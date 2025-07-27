@@ -1,4 +1,4 @@
-import { createUser, getUser, createToken, getUserById, updateUser, updateUserPassword } from '../services/userServices.js'
+import { createUser, getUser, createToken, getUserById, updateUser, updateUserPassword, getUsersProductList } from '../services/userServices.js'
 
 const userController = {
     postUser: async (req, res, next) => {
@@ -51,6 +51,12 @@ const userController = {
         }
         const message = await updateUserPassword(userBody, id);
         res.json(message)
+    },
+
+    getUsersProductList: async (req, res) => {
+        const id = req.user.userId;
+        const productList = await getUsersProductList(id);
+        res.json(productList)
     },
 }
 

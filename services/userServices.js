@@ -65,4 +65,9 @@ const updateUserPassword = async (userBody, id) => {
     return { message: "Successfully Password Changed" }
 }
 
-export { createUser, getUser, createToken, getUserById, updateUser, updateUserPassword };
+const getUsersProductList = async (id) => {
+    const productList = await userRepository.getProductListById(id)
+    return productList
+}
+
+export { createUser, getUser, createToken, getUserById, updateUser, updateUserPassword, getUsersProductList };

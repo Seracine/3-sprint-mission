@@ -14,6 +14,9 @@ userRouter.route('/login') // 유효성 검사 추가로 구현 필요
 userRouter.route('/password')
     .patch(auth.verifyAccessToken, auth.verifyUserAuth, userController.patchUserPassword)
 
+userRouter.route('/products')
+    .get(auth.verifyAccessToken, userController.getUsersProductList)
+
 userRouter.route('/')
     .get(auth.verifyAccessToken, userController.getUserWithToken)
     .patch(auth.verifyAccessToken, auth.verifyUserAuth, userController.patchUser)

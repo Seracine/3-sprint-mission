@@ -50,6 +50,18 @@ class UserRepository {
         });
         return updatedUser;
     }
+
+    getProductListById = async (id) => {
+        const productList = await prisma.user.findMany({
+            where: {
+                id,
+            },
+            select: {
+                Product: true
+            }
+        });
+        return productList;
+    }
 };
 
 export default new UserRepository();
