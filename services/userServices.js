@@ -9,7 +9,7 @@ import { hashPassword, verifyPassword } from '../utils/passwordHash.js';
  */
 async function createUser(userBody) {
     const { email, nickname, password, image } = userBody;
-    const userChecker = userRepository.findByEmail(email);
+    const userChecker = await userRepository.findByEmail(email);
     if (userChecker) {
         const error = new Error('User already exists')
         error.code = 401
@@ -32,14 +32,29 @@ async function getUser(email, password) {
 }
 
 const filterSensitiveUserData = (user) => {
-    const { password, ...rest } = user
+    const { password, refreshToken, ...rest } = user
     return rest
 }
 
-const createToken = (user) => {
-    const payload = { userId: user.id }
-    const options = { expiresIn: '1h' }
-    return jwt.sign(payload, process.env.JWT_SECRET, options)
+const createToken = (user, type) => {
+  const payload = { userId: user.id }
+  let expiresIn = '1h'
+  
+  if (type === 'refresh') {
+	  expiresIn = '2w'
+  }
+  
+  return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn });
+}
+
+const refreshingToken = async (userId, refreshToken) => {
+  const user = await userRepository.findById(userId)
+  if (!user || user.refreshToken !== refreshToken) {
+    const error = new Error('Unauthorized')
+    error.code = 401
+    throw error
+  }
+  return createToken(user)
 }
 
 const getUserById = async (id) => { // 토큰으로 전달받은 것이므로 무조건 id가 있음
@@ -70,4 +85,4 @@ const getUsersProductList = async (id) => {
     return productList
 }
 
-export { createUser, getUser, createToken, getUserById, updateUser, updateUserPassword, getUsersProductList };
+export { createUser, getUser, createToken, refreshingToken, getUserById, updateUser, updateUserPassword, getUsersProductList };

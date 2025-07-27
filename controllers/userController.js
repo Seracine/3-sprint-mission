@@ -1,4 +1,4 @@
-import { createUser, getUser, createToken, getUserById, updateUser, updateUserPassword, getUsersProductList } from '../services/userServices.js'
+import { createUser, getUser, createToken, refreshingToken, getUserById, updateUser, updateUserPassword, getUsersProductList } from '../services/userServices.js'
 
 const userController = {
     postUser: async (req, res, next) => {
@@ -17,7 +17,18 @@ const userController = {
         try {
             const user = await getUser(email, password);
             const accessToken = createToken(user);
-            res.status(200).json({ accessToken });
+            const refreshToken = createToken(user, 'refresh')
+            // 로그인시 DB에 새로운 refresh 토큰으로 업데이트
+            await updateUser({ refreshToken }, user.id)
+
+            // refresh 토큰은 쿠키로 전달
+            res.cookie('refreshToken', refreshToken, {
+                httpOnly: true, // JavaScript에서 접근 불가, 오직 HTTP(S) 프로토콜을 통해서만 쿠키를 전송할 수 있도록 제한
+                sameSite: 'none', // 다른 도메인에서 쿠키 전송 허용
+                secure: true // HTTPS 연결에서만 쿠키가 전송
+            })
+
+            return res.status(200).json({ accessToken })
         } catch (error) {
             throw error
         }
@@ -57,6 +68,17 @@ const userController = {
         const id = req.user.userId;
         const productList = await getUsersProductList(id);
         res.json(productList)
+    },
+
+    refreshAccessToken: async (req, res, next) => {
+        try {
+            const { refreshToken } = req.cookies
+            const { userId } = req.auth
+            const accessToken = await refreshingToken(userId, refreshToken)
+            res.json({ accessToken })
+        } catch (error) {
+            next(error)
+        }
     },
 }
 
