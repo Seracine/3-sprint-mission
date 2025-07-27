@@ -101,7 +101,11 @@ const verifyArticleCommentAuth = async (req, res, next) => {
   }
 }
 
-const verifyUserAuth = async (req, res, next) => { // 이미 로그인이 된 상태, 토큰에 있는 정보로 진행
+/**
+ * 이미 로그인이 된 상태, 토큰에 있는 정보로 진행
+ * 토큰은 유효하나 DB에는 제거해서 없을수도 있으므로 한번 검사 
+ * */ 
+const verifyUserAuth = async (req, res, next) => { 
   const userId = req.user.userId;
   try {
     const user = await userRepository.findById(userId);

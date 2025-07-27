@@ -1,4 +1,4 @@
-import { createUser, getUser, createToken, getUserById, updateUser } from '../services/userServices.js'
+import { createUser, getUser, createToken, getUserById, updateUser, updateUserPassword } from '../services/userServices.js'
 
 const userController = {
     postUser: async (req, res, next) => {
@@ -41,6 +41,16 @@ const userController = {
         }
         const user = await updateUser(userBody, id);
         res.json(user)
+    },
+
+    patchUserPassword: async (req, res) => {
+        const id = req.user.userId;
+        const userBody = {
+            currentPassword: req.body.currentPassword,
+            newPassword: req.body.newPassword,
+        }
+        const message = await updateUserPassword(userBody, id);
+        res.json(message)
     },
 }
 

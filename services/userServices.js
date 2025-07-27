@@ -10,7 +10,7 @@ import { hashPassword, verifyPassword } from '../utils/passwordHash.js';
 async function createUser(userBody) {
     const { email, nickname, password, image } = userBody;
     const userChecker = userRepository.findByEmail(email);
-    if(userChecker){
+    if (userChecker) {
         const error = new Error('User already exists')
         error.code = 401
         throw error
@@ -52,4 +52,17 @@ const updateUser = async (userBody, id) => {
     return filterSensitiveUserData(updatedUser)
 }
 
-export { createUser, getUser, createToken, getUserById, updateUser };
+const updateUserPassword = async (userBody, id) => {
+    const { currentPassword, newPassword } = userBody
+    // 1. 받은 비밀번호와 저장된 비밀번호 체크
+    const user = await userRepository.findById(id)
+    verifyPassword(currentPassword, user.password)
+
+    // 2. 일치했으면 위 단걔를 통과하였으므로 비밀번호 해싱후 새로운 값으로 저장
+    await userRepository.updatePassword(hashPassword(newPassword), id)
+
+    // 3. 비밀번호만 전달할 필요는 없으므로 성공적으로 변경했다는 메세지 전달
+    return { message: "Successfully Password Changed" }
+}
+
+export { createUser, getUser, createToken, getUserById, updateUser, updateUserPassword };
