@@ -1,4 +1,4 @@
-import { createUser, getUser, createToken } from '../services/userServices.js'
+import { createUser, getUser, createToken, getUserById } from '../services/userServices.js'
 
 const userController = {
     postUser: async (req, res, next) => {
@@ -17,6 +17,16 @@ const userController = {
             const user = await getUser(email, password);
             const accessToken = createToken(user);
             res.status(200).json({ accessToken });
+        } catch (error) {
+            throw error
+        }
+    },
+
+    getUserWithToken: async (req, res, next) => {
+        const userId = req.user.userId
+        try {
+            const user = await getUserById(userId);
+            res.status(200).json(user);
         } catch (error) {
             throw error
         }

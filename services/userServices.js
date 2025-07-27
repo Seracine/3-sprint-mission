@@ -37,4 +37,14 @@ const createToken = (user) => {
     return jwt.sign(payload, process.env.JWT_SECRET, options)
 }
 
-export { createUser, getUser, createToken };
+const getUserById = async (id) => { // 토큰으로 전달받은 id
+    const user = await userRepository.findById(id)
+     if (!user) {
+        const error = new Error('Unauthorized')
+        error.code = 401
+        throw error
+    }
+    return filterSensitiveUserData(user)
+}
+
+export { createUser, getUser, createToken, getUserById };

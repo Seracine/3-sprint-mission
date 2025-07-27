@@ -13,8 +13,16 @@ class UserRepository {
     };
 
     findByEmail = async (email) => {
-        const user = await prisma.user.findUniqueOrThrow({
+        const user = await prisma.user.findUnique({
             where: { email }
+        })
+
+        return user;
+    };
+
+    findById = async (id) => {
+        const user = await prisma.user.findUnique({
+            where: { id }
         })
 
         return user;
