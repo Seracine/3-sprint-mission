@@ -24,5 +24,7 @@ articleRouter.route('/:id')
     .patch(auth.verifyAccessToken, auth.verifyArticleAuth, validations.patchArticleValidation, articleController.patchArticle)
     .delete(auth.verifyAccessToken, auth.verifyArticleAuth, articleController.deleteArticle)
 
+articleRouter.route('/:id/like')
+    .post(auth.verifyAccessToken, articleController.likeArticle)
 
 export default articleRouter;

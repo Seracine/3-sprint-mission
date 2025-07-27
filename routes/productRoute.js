@@ -13,13 +13,19 @@ productRouter.route('/comment/:id')
     .patch(auth.verifyAccessToken, auth.verifyProductCommentAuth, validations.patchCommentValidation, productController.patchComment)
     .delete(auth.verifyAccessToken, auth.verifyProductCommentAuth, productController.deleteComment)
 
+productRouter.route('/liked')
+    .get(auth.verifyAccessToken, productController.getLikedProducts)
+
 productRouter.route('/')
     .get(productController.getProducts)
     .post(auth.verifyAccessToken, validations.createProductValidation, productController.postProduct)
 
 productRouter.route('/:id')
-    .get(productController.getProductById)
+    .get(auth.verifyAccessToken, productController.getProductById)
     .patch(auth.verifyAccessToken, auth.verifyProductAuth, validations.patchProductValidation, productController.patchProduct)
     .delete(auth.verifyAccessToken, auth.verifyProductAuth, productController.deleteProduct)
+
+productRouter.route('/:id/like')
+    .post(auth.verifyAccessToken, productController.likeProduct)
 
 export default productRouter;
