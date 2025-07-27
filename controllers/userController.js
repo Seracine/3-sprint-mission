@@ -1,4 +1,4 @@
-import { createUser, getUser, createToken, getUserById } from '../services/userServices.js'
+import { createUser, getUser, createToken, getUserById, updateUser } from '../services/userServices.js'
 
 const userController = {
     postUser: async (req, res, next) => {
@@ -6,6 +6,7 @@ const userController = {
             email: req.body.email,
             nickname: req.body.nickname,
             password: req.body.password,
+            image: req.body.image
         }
         const user = await createUser(userBody);
         res.status(201).json(user)
@@ -30,6 +31,16 @@ const userController = {
         } catch (error) {
             throw error
         }
+    },
+
+    patchUser: async (req, res) => {
+        const id = req.user.userId;
+        const userBody = {
+            nickname: req.body.nickname,
+            image: req.body.image
+        }
+        const user = await updateUser(userBody, id);
+        res.json(user)
     },
 }
 

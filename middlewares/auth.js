@@ -1,6 +1,7 @@
 import { expressjwt } from 'express-jwt'
 import productRepository from '../repositories/productRepository.js'
 import articleRepository from '../repositories/articleRepository.js'
+import userRepository from '../repositories/userRepository.js'
 
 const verifyAccessToken = expressjwt({
   secret: process.env.JWT_SECRET,
@@ -100,8 +101,26 @@ const verifyArticleCommentAuth = async (req, res, next) => {
   }
 }
 
+const verifyUserAuth = async (req, res, next) => { // 이미 로그인이 된 상태, 토큰에 있는 정보로 진행
+  const userId = req.user.userId;
+  try {
+    const user = await userRepository.findById(userId);
+
+    if (!user) {
+      const error = new Error('User not found');
+      error.code = 404;
+      throw error;
+    }
+
+    next();
+  } catch (error) {
+    next(error);
+  }
+}
+
 export default {
   verifyAccessToken, 
   verifyProductAuth, verifyProductCommentAuth, 
   verifyArticleAuth, verifyArticleCommentAuth,
+  verifyUserAuth,
 }

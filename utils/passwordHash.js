@@ -5,7 +5,11 @@ const hashPassword = (password) => {
 }
 
 const verifyPassword = (password, hash) => {
-    return bcrypt.compareSync(password, hash); // boolean
+    if (!bcrypt.compareSync(password, hash)) { // boolean
+        new Error('Unauthorized')
+        error.code = 401
+        throw error
+    }
 }
 
 export { hashPassword, verifyPassword }

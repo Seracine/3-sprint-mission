@@ -13,5 +13,6 @@ userRouter.route('/login') // 유효성 검사 추가로 구현 필요
 
 userRouter.route('/')
     .get(auth.verifyAccessToken, userController.getUserWithToken)
-
+    .patch(auth.verifyAccessToken, auth.verifyUserAuth, userController.patchUser)
+    
 export default userRouter;

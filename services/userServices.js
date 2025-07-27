@@ -8,9 +8,14 @@ import { hashPassword, verifyPassword } from '../utils/passwordHash.js';
  * @returns {Object} 비밀번호와 같은 민감한 정보가 제외된 객체를 반환합니다.
  */
 async function createUser(userBody) {
-    const { email, nickname, password } = userBody;
-
-    const user = await userRepository.save(email, nickname, hashPassword(password));
+    const { email, nickname, password, image } = userBody;
+    const userChecker = userRepository.findByEmail(email);
+    if(userChecker){
+        const error = new Error('User already exists')
+        error.code = 401
+        throw error
+    }
+    const user = await userRepository.save(email, nickname, hashPassword(password), image);
 
     return filterSensitiveUserData(user);
 }
@@ -18,8 +23,8 @@ async function createUser(userBody) {
 async function getUser(email, password) {
     const user = await userRepository.findByEmail(email)
     if (!user) {
-        const error = new Error('Unauthorized')
-        error.code = 401
+        const error = new Error('Not Found')
+        error.code = 404
         throw error
     }
     verifyPassword(password, user.password)
@@ -37,14 +42,14 @@ const createToken = (user) => {
     return jwt.sign(payload, process.env.JWT_SECRET, options)
 }
 
-const getUserById = async (id) => { // 토큰으로 전달받은 id
+const getUserById = async (id) => { // 토큰으로 전달받은 것이므로 무조건 id가 있음
     const user = await userRepository.findById(id)
-     if (!user) {
-        const error = new Error('Unauthorized')
-        error.code = 401
-        throw error
-    }
     return filterSensitiveUserData(user)
 }
 
-export { createUser, getUser, createToken, getUserById };
+const updateUser = async (userBody, id) => {
+    const updatedUser = await userRepository.update(userBody, id)
+    return filterSensitiveUserData(updatedUser)
+}
+
+export { createUser, getUser, createToken, getUserById, updateUser };
