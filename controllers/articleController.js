@@ -17,7 +17,8 @@ const articleController = {
     postComment : async (req, res) => { 
         const commentBody = {
             content: req.body.content,
-            articleId: req.body.id
+            articleId: req.body.id,
+            userId: req.user.userId
         }
         const comment = await createComment(commentBody)
 

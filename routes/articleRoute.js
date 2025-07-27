@@ -8,11 +8,11 @@ const articleRouter = express.Router()
 
 articleRouter.route('/comment')
     .get(articleController.getComments)
-    .post(validations.createCommentValidation, articleController.postComment)
+    .post(auth.verifyAccessToken, validations.createCommentValidation, articleController.postComment)
 
 articleRouter.route('/comment/:id')
-    .patch(validations.patchCommentValidation, articleController.patchComment)
-    .delete(articleController.deleteComment)
+    .patch(auth.verifyAccessToken, auth.verifyArticleCommentAuth, validations.patchCommentValidation, articleController.patchComment)
+    .delete(auth.verifyAccessToken, auth.verifyArticleCommentAuth, articleController.deleteComment)
 
 
 articleRouter.route('/')

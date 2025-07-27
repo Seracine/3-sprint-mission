@@ -7,11 +7,11 @@ const productRouter = express.Router();
 
 productRouter.route('/comment')
     .get(productController.getComments)
-    .post(validations.createCommentValidation, productController.postComment)
+    .post(auth.verifyAccessToken, validations.createCommentValidation, productController.postComment)
 
 productRouter.route('/comment/:id')
-    .patch(validations.patchCommentValidation, productController.patchComment)
-    .delete(productController.deleteComment)
+    .patch(auth.verifyAccessToken, auth.verifyProductCommentAuth, validations.patchCommentValidation, productController.patchComment)
+    .delete(auth.verifyAccessToken, auth.verifyProductCommentAuth, productController.deleteComment)
 
 productRouter.route('/')
     .get(productController.getProducts)

@@ -10,6 +10,14 @@ class articleRepository {
         return article;
     }
 
+    getCommentById = async (id) => {
+        const articleComment = await prisma.articleComment.findUnique({
+            where: {
+                id,
+            },
+        })
+        return articleComment;
+    }
 }
 
 export default new articleRepository();

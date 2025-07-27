@@ -18,7 +18,8 @@ const productController = {
 
         const commentBody = {
             content: req.body.content,
-            productId: req.body.id
+            productId: req.body.id,
+            userId: req.user.userId
         }
 
         const comment = await createComment(commentBody);
