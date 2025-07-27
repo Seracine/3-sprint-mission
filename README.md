@@ -102,10 +102,10 @@
 
 ### 인증
 - User 스키마를 작성해 주세요.
-    id, email, nickname, image, password, createdAt, updatedAt 필드를 가집니다.
+    * id, email, nickname, image, password, createdAt, updatedAt 필드를 가집니다.
 - 회원가입 API를 만들어 주세요.
-    email, nickname, password 를 입력하여 회원가입을 진행합니다.
-    password는 해싱해 저장합니다.
+    * email, nickname, password 를 입력하여 회원가입을 진행합니다.
+    * password는 해싱해 저장합니다.
 - 토큰 기반 인증: 로그인에 성공하면 Access Token을 발급
 
 ### 상품 기능 인가
