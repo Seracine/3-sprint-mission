@@ -3,7 +3,8 @@ import {
     CreateArticleStruct, PatchArticleStruct,
     CreateProductStruct, PatchProductStruct,
     CreateCommentStruct, PatchCommentStruct,
-    CreateUserStruct
+    CreateUserStruct,
+    GetUserStruct
 } from '../prisma/structs.js'
 
 function validateWithStruct(struct) {
@@ -12,7 +13,8 @@ function validateWithStruct(struct) {
             assert(req.body, struct);
             next();
         } catch (err) {
-            res.status(400).json({ error: err.message });
+            // res.status(400).json({ error: err.message });
+            res.status(400).json({ error: "Validation Failed" });
         }
     };
 }
@@ -25,5 +27,6 @@ export default {
     createCommentValidation: validateWithStruct(CreateCommentStruct),
     patchCommentValidation: validateWithStruct(PatchCommentStruct),
     createUserValidation: validateWithStruct(CreateUserStruct),
+    getUserValidation: validateWithStruct(GetUserStruct),
 };
 

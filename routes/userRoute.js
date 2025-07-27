@@ -9,7 +9,7 @@ userRouter.route('/sign-up')
     .post(validations.createUserValidation, userController.postUser)
 
 userRouter.route('/login') // 유효성 검사 추가로 구현 필요
-    .post(userController.getUser)
+    .post(validations.getUserValidation, userController.getUser)
 
 userRouter.route('/password')
     .patch(auth.verifyAccessToken, auth.verifyUserAuth, userController.patchUserPassword)

@@ -31,3 +31,8 @@ export const CreateUserStruct = struct.object({
     nickname: struct.size(struct.string(), 3, 50),
     password: struct.size(struct.string(), 8, 50), //8자 이상 50자 미만
 })
+
+export const GetUserStruct = struct.object({
+    email: struct.define('Email', isEmail),
+    password: struct.size(struct.string(), 8, 50), //8자 이상 50자 미만
+})
