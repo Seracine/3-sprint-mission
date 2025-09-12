@@ -4,7 +4,7 @@ import {
     CreateProductDto, UpdateProductDto,
     CreateProductCommentDto, UpdateProductCommentDto,
     likedProduct
-} from '../../types/product.js'
+} from '../types/product.js'
 
 async function findComments(limit: number, cursor: string) {
     const commentList = await productRepository.getCommentList(limit, cursor);

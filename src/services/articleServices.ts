@@ -3,7 +3,7 @@ import {
     CreateArticleCommentDto, UpdateArticleCommentDto,
     CreateArticleDto, UpdateArticleDto,
     likedArticle,
-} from '../../types/article.js';
+} from '../types/article.js';
 import { Article } from '@prisma/client';
 
 

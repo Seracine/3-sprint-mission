@@ -2,7 +2,7 @@ import { prisma } from '../config/prismaClient.js';
 import {
     CreateProductDto, UpdateProductDto,
     CreateProductCommentDto, UpdateProductCommentDto
-} from '../../types/product.js'
+} from '../types/product.js'
 
 class productRepository {
 
