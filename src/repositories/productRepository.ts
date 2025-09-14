@@ -13,7 +13,7 @@ class productRepository {
     }
 
     update = async (productDto: UpdateProductDto, id: string) => {
-        return prisma.product.update({
+        return await prisma.product.update({
             data: productDto,
             where: { id },
         })
@@ -190,6 +190,16 @@ class productRepository {
             }
         })
         return product;
+    }
+
+    findLikedUsersByProductId = async (id: string) => {
+        const product = await prisma.product.findUnique({
+            where: { id },
+            include: {
+                likedUser: true,
+            },
+        });
+        return product?.likedUser;
     }
 }
 export default new productRepository();
