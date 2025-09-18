@@ -20,6 +20,16 @@ class NotificationRepository {
         return readedNotification;
     }
 
+    findUserIdById = async (id: number) => {
+        const readedNotification = await prisma.notification.findUnique({
+            where: {
+                id,
+            },
+            select: { userId: true },
+        });
+        return readedNotification;
+    }
+
     findNotificationListById = async (userId: number): Promise<Notification[]> => {
         const notificationList: Notification[] = await prisma.notification.findMany({
             where: {

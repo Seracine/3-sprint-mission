@@ -23,6 +23,11 @@ const createNotification = async (createNotificationDTO: CreateNotificationDTO) 
 }
 
 const readNotification = async (id: number, userId: number): Promise<Notification> => {
+    // 알람 id가 userId의 것인지 확인
+    const notificationUserId = await notificationRepository.findUserIdById(id)
+    if (!notificationUserId || userId !== notificationUserId.userId){
+        throw new Error('Invaild Notification or Bad Request')
+    }
     // 알람 읽음 처리
     const notification: Notification = await notificationRepository.read(id)
     // 읽은 후 안 읽은 개수가 줄어드니 개수 확인 후 전송
