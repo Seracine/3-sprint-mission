@@ -2,14 +2,14 @@ import * as dotenv from 'dotenv'
 import cors from 'cors';
 import cookieParser from 'cookie-parser'
 import express, { Express } from 'express';
-import productRouter from './routes/productRoute.js'
-import articleRouter from './routes/articleRoute.js'
-import userRouter from './routes/userRoute.js'
-import notificationRouter from './routes/notificationRoute.js';
-import errorHandler from './middlewares/errorHandler.js'
-import { upload, uploadImage } from './services/imageUpload.js'
+import productRouter from './routes/productRoute'
+import articleRouter from './routes/articleRoute'
+import userRouter from './routes/userRoute'
+import notificationRouter from './routes/notificationRoute';
+import errorHandler from './middlewares/errorHandler'
+import { upload, uploadImage } from './services/imageUpload'
 import http from 'http'
-import { createSocketIo } from './config/socket-io.js';
+import { createSocketIo } from './config/socket-io';
 
 
 dotenv.config()

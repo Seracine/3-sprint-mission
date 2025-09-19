@@ -1,11 +1,11 @@
-import articleRepository from '../repositories/articleRepository.js';
+import articleRepository from '../repositories/articleRepository';
 import {
     CreateArticleCommentDto, UpdateArticleCommentDto,
     CreateArticleDto, UpdateArticleDto,
     likedArticle,
-} from '../types/article.js';
+} from '../types/article';
 import { Article } from '@prisma/client';
-import { createNotification } from './notificationService.js';
+import { createNotification } from './notificationService';
 
 
 async function findComments(limit: string, cursor: string) {

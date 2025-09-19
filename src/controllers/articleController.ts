@@ -1,7 +1,7 @@
 import { Article } from '@prisma/client';
-import { CreateArticleDto, UpdateArticleDto } from '../types/article.js';
-import { findComments, createComment, updateComment, deleteComment, findArticles, createArticle, findArticleById, updatdArticle, deleteArticle, updateLikeArticle } from '../services/articleServices.js';
-import { Request, Response, NextFunction } from 'express';
+import { CreateArticleDto, UpdateArticleDto } from '../types/article';
+import { findComments, createComment, updateComment, deleteComment, findArticles, createArticle, findArticleById, updatdArticle, deleteArticle, updateLikeArticle } from '../services/articleServices';
+import { Request, Response } from 'express';
 
 const articleController = {
 

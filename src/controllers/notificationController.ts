@@ -1,5 +1,5 @@
-import { Request, Response, NextFunction } from 'express';
-import { readNotification, getNotificationList, getUnreadNotificationCount } from '../services/notificationService.js'
+import { Request, Response } from 'express';
+import { readNotification, getNotificationList, getUnreadNotificationCount } from '../services/notificationService'
 import { Notification } from '@prisma/client';
 
 const notificationController = {

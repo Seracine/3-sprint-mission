@@ -1,5 +1,5 @@
-import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from './ProductService.js';
-import { getArticle, getArticleList, createArticle, patchArticle, deleteArticle } from './ArticleService.js';
+import { getProductList, getProduct, createProduct, patchProduct, deleteProduct } from './ProductService';
+import { getArticle, getArticleList, createArticle, patchArticle, deleteArticle } from './ArticleService';
 
 // ================================== Product Class ==================================
 class Product {

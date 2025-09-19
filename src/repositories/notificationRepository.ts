@@ -1,6 +1,6 @@
 import { Notification } from '@prisma/client';
-import { prisma } from '../config/prismaClient.js';
-import { CreateNotificationDTO } from '../types/notification.js';
+import { prisma } from '../config/prismaClient';
+import { CreateNotificationDTO } from '../types/notification';
 
 class NotificationRepository {
     create = async (data: CreateNotificationDTO) => {

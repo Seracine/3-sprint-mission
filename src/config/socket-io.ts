@@ -1,8 +1,8 @@
 import { Server, Socket } from 'socket.io'
 import http from 'http'
-import EventType from '../types/event-type.js'
-import { emitUnreadCount } from '../services/notificationService.js'
-import { authSocketToken } from '../middlewares/ws-auth.js'
+import EventType from '../types/event-type'
+import { emitUnreadCount } from '../services/notificationService'
+import { authSocketToken } from '../middlewares/ws-auth'
 
 export const createSocketIo = (server: http.Server) => {
     const io = new Server(server, {
