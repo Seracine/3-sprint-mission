@@ -15,7 +15,7 @@ const articleController = {
             nextCursor = comments[comments.length - 1].id
         }
 
-        res.status(201).json({ data: comments, nextCursor })
+        res.status(200).json({ data: comments, nextCursor })
     },
 
     postComment: async (req: Request, res: Response): Promise<void> => {
