@@ -1,6 +1,6 @@
 import { Article } from '@prisma/client';
 import { CreateArticleDto, UpdateArticleDto } from '../types/article';
-import { findComments, createComment, updateComment, deleteComment, findArticles, createArticle, findArticleById, updatdArticle, deleteArticle, updateLikeArticle } from '../services/articleServices';
+import { findComments, createComment, updateComment, deleteComment, findArticles, createArticle, findArticleById, updatedArticle, deleteArticle, updateLikeArticle } from '../services/articleServices';
 import { Request, Response } from 'express';
 
 const articleController = {
@@ -74,7 +74,7 @@ const articleController = {
             title: req.body.title,
             content: req.body.content,
         }
-        const article = await updatdArticle(patchArticleDto, id);
+        const article = await updatedArticle(patchArticleDto, id);
         res.json(article)
     },
 

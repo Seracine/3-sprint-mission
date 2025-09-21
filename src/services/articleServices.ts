@@ -54,7 +54,7 @@ async function findArticleById(id: string, userId: number | undefined) {
     return { ...articleDetails, isLiked };
 }
 
-async function updatdArticle(updateArticleBody: UpdateArticleDto, id: string) {
+async function updatedArticle(updateArticleBody: UpdateArticleDto, id: string) {
     const article = await articleRepository.update(updateArticleBody, id);
     return article;
 }
@@ -80,4 +80,4 @@ async function updateLikeArticle(id: string, userId: number): Promise<likedArtic
     return likedArticle;
 }
 
-export { findComments, createComment, updateComment, deleteComment, findArticles, createArticle, findArticleById, updatdArticle, deleteArticle, updateLikeArticle };
+export { findComments, createComment, updateComment, deleteComment, findArticles, createArticle, findArticleById, updatedArticle, deleteArticle, updateLikeArticle };
