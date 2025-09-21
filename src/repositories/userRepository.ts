@@ -15,8 +15,8 @@ class UserRepository {
         return user;
     };
 
-    findByEmail = async (email: string): Promise<User> => {
-        const user: User = await prisma.user.findUniqueOrThrow({
+    findByEmail = async (email: string): Promise<User | null> => {
+        const user: User | null = await prisma.user.findUnique({
             where: { email }
         })
 
