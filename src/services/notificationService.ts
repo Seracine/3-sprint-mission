@@ -1,7 +1,7 @@
 import notificationRepository from '../repositories/notificationRepository';
 import { Notification } from '@prisma/client';
 import { CreateNotificationDTO } from '../types/notification';
-import { io } from '../app';
+import { io } from '../config/socket-io';
 import EventType from '../types/event-type';
 
 const getUnreadNotificationCount = async (userId: number): Promise<number> => {

@@ -4,8 +4,10 @@ import EventType from '../types/event-type'
 import { emitUnreadCount } from '../services/notificationService'
 import { authSocketToken } from '../middlewares/ws-auth'
 
-export const createSocketIo = (server: http.Server) => {
-    const io = new Server(server, {
+let io: Server
+
+const createSocketIo = (server: http.Server) => {
+    io = new Server(server, {
         cors: {
             origin: '*',
             methods: ['GET', 'POST']
@@ -29,6 +31,6 @@ export const createSocketIo = (server: http.Server) => {
             console.log('client disconnected')
         })
     })
-
-    return io;
 }
+
+export { io, createSocketIo }
