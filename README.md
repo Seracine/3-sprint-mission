@@ -252,8 +252,12 @@
 ![테스트 결과](./test/report/jest-test-coverage.png)
 
 ---
+## 피드백 반영
+- jest 프레임워크 및 호환성을 고려하여 module에서 commonjs로 변경하였습니다. (package.json, tsconfig, import 구문)
+- readNotification(알람 읽음 처리)시 올바른 사용자가 맞는지 검증하는 로직을 추가하였습니다
+- authSocketToken 함수 선언부에서 중복된 구문이 있던 부분을 삭제하였습니다.
+
 ## 멘토에게
-- jest 프레임워크 및 이전 멘토님께서 주신 피드백을 고려하여 module에서 commonjs로 변경하였습니다. (package.json, tsconfig, import 구문)
 - 통합 테스트 : 상품 밋 게시글 및 댓글 관련 API도 테스트를 진행하였습니다.
 - 상품 비즈니스 로직에 대한 유닛 테스트를 진행할 때, 한 파일 내에서 describe로 논리적인 그룹을 구성하여 진행하였습니다. 다만 mock활용을 위해 module을 mocking해버리니 spy를 활용하더라도 mocking된 함수를 추적하는 것이 되어버려 아래와 같은 의문점들이 생겼습니다
   - mock과 spy를 같이 사용해도 괜찮은지 여부
