@@ -5,7 +5,7 @@ import { Product } from '@prisma/client';
 import MOCK from './testMock';
 import { CreateProductDto, UpdateProductDto } from '../src/types/product';
 
-// Mock the productRepository module
+// Mock productRepository module
 jest.mock('../src/repositories/productRepository', () => ({
 	create: jest.fn(), // mock
 	update: jest.fn(), // mock
