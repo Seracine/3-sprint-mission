@@ -247,9 +247,9 @@
 
 ## 테스트 결과
 
-![뱃지](test\report\badges.svg)
+![뱃지](./test/report/badges.svg)
 
-![테스트 결과](test\report\jest-test-coverage.png)
+![테스트 결과](./test/report/jest-test-coverage.png)
 
 ---
 ## 멘토에게
