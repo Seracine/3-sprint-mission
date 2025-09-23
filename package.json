@@ -32,6 +32,7 @@
     "@types/jsonwebtoken": "^9.0.10",
     "@types/multer": "^2.0.0",
     "@types/supertest": "^6.0.3",
+    "coverage-badges-cli": "^2.2.0",
     "jest": "^30.1.3",
     "nodemon": "^3.1.10",
     "supertest": "^7.1.4",
@@ -47,7 +48,8 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx ./src/prisma/seed.ts",
-    "test:jest": "dotenv -e .env.test -- npm run prisma:migrate && dotenv -e .env.test -- jest --runInBand --coverage"
+    "jest:test": "dotenv -e .env.test -- npm run prisma:migrate && dotenv -e .env.test -- jest --runInBand --coverage",
+    "jest:badge": "coverage-badges"
   },
   "prisma": {
     "seed": "node ./.dest/prisma/seed.js",
