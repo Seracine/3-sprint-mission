@@ -47,10 +47,10 @@
     "prisma:generate": "prisma generate",
     "prisma:migrate": "prisma migrate dev",
     "prisma:seed": "tsx ./src/prisma/seed.ts",
-    "test:jest": "dotenv -e .env.test -- npm run prisma:migrate && dotenv -e .env.test -- jest --runInBand"
+    "test:jest": "dotenv -e .env.test -- npm run prisma:migrate && dotenv -e .env.test -- jest --runInBand --coverage"
   },
   "prisma": {
-    "seed": "node ./dest/prisma/seed.js",
+    "seed": "node ./.dest/prisma/seed.js",
     "schema": "./src/prisma/schema.prisma"
   }
 }
