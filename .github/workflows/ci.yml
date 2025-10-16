@@ -1,0 +1,53 @@
+name: ci
+
+on:
+  push:
+    branches: main
+  pull_request:
+    branches: main
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # 테스트용 환경 변수 설정
+    environment: TEST
+    env:
+      DATABASE_URL: ${{ secrets.DATABASE_URL }}
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
+      PORT: ${{ secrets.PORT }}
+      NODE_ENV: develop #production만 아니면 로직은 동일
+    
+    services:
+      postgres:
+        image: postgres
+        env:
+          POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+          POSTGRES_DB: ${{ secrets.DB_NAME }}
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+        ports:
+          - 5432:5432
+
+    steps:
+      - name: Checkout code
+      - uses: actions/checkout@v5
+    
+      - name: Setup Node.js
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Install dependencies       
+      - run: npm ci
+
+      - name: Type Check
+      - run: npx tsc --noEmit
+
+      - name: Prisma migrate
+      - run: npm run prisma:migrate
+
+      - name: Run Tests
+      - run: npm run test
