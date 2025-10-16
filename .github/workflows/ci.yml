@@ -2,9 +2,9 @@ name: ci
 
 on:
   push:
-    branches: [main, 천수-sprint11]
+    branches: [천수-*]
   pull_request:
-    branches: [main, 천수-sprint11]
+    branches: [main]
 
 jobs:
   test:
