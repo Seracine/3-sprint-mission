@@ -313,6 +313,11 @@
 ---
 # 스프린트 미션 11
 
+## 미션 목표
+
+- Github Actions로 테스트, 배포 자동화
+- Docker 이미지 만들기
+
 ## ✅ 요구사항
 
 ### Github Actions 활용
@@ -323,6 +328,7 @@
 
 ### Docker 이미지 만들기
 
+다음을 만족하는 Dockerfile과 docker-compose.yaml을 작성해 주세요.
 - [x] Express 서버를 실행하는 Dockerfile을 작성해 주세요.
 - [x] Express 서버가 파일 업로드를 처리하는 폴더는 Docker의 Volume을 활용하도록 구현해 주세요.
 - [x] 데이터베이스는 Postgres 이미지를 사용해 연결하도록 구현해 주세요.
