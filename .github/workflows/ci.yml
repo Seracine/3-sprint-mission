@@ -4,7 +4,7 @@ on:
   push:
     branches: [천수-*]
   pull_request:
-    branches: [main]
+    branches: [main, 천수]
 
 jobs:
   test:
