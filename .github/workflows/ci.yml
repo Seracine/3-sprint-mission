@@ -1,8 +1,6 @@
 name: ci
 
 on:
-  push:
-    branches: [천수-*]
   pull_request:
     branches: [main, 천수]
 
