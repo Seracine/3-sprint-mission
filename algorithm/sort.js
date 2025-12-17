@@ -16,7 +16,7 @@ const selectionSort = (arr) => {
       }
     }
     // 현재 위치의 값과 최소 위치의 값 변경
-    temp = arr[j];
+    const temp = arr[j];
     arr[j] = min_value;
     arr[min_index] = temp;
   }
@@ -56,7 +56,7 @@ const insertionSort = (arr) => {
 const insert_nums = [3, 1, 2, 6, 5];
 console.log('insertion sort 전 : ', insert_nums); // [3, 1, 2, 6, 5]
 
-selectionSort(insert_nums);
+insertionSort(insert_nums);
 console.log('insertion sort 후 : ', insert_nums); // [1, 2, 3, 5, 6]
 console.log('');
 
@@ -122,7 +122,7 @@ const quickSort = (arr, start, end) => { // end는 배열의 마지막 인덱스
 
   // Divide
   const pivot = arr[end]; // 가장 마지막을 피벗으로 설정
-  small_partition_index = start -1;
+  let small_partition_index = start -1;
   
   for (let i = start; i < end; i++){
     const element = arr[i];
@@ -147,3 +147,4 @@ const quick_nums = [3, 1, 2, 5, 6, 0];
 console.log('quick sort 전 : ', quick_nums); // [3, 1, 2, 6, 5];
 quickSort(quick_nums, 0, quick_nums.length - 1);
 console.log('quick sort 후 : ', quick_nums); // [1, 2, 3, 6, 5];
+console.log('');
