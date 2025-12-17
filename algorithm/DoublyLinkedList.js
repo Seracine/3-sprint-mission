@@ -150,37 +150,31 @@ class DoublyLinkedList {
 }
 
 // --- 실행 예시 코드 ---
-function runDoublyLinkedListExample() {
-  console.log("--- DoublyLinkedList 실행 예시 시작 ---");
+console.log("--- DoublyLinkedList 실행 예시 시작 ---");
 
-  const DDL = new DoublyLinkedList();
+const DDL = new DoublyLinkedList();
 
-  console.log("\n1. 노드 추가 (addToTail, addToHead)");
-  DDL.addToTail(2);
-  DDL.addToTail(3);
-  DDL.addToHead(1);
-  DDL.print(); // 결과: 1 <-> 2 <-> 3
-  DDL.printReverse(); // 결과: 3 <-> 2 <-> 1
+console.log("\n1. 노드 추가 (addToTail, addToHead)");
+DDL.addToTail(2);
+DDL.addToTail(3);
+DDL.addToHead(1);
+DDL.print(); // 결과: 1 <-> 2 <-> 3
+DDL.printReverse(); // 결과: 3 <-> 2 <-> 1
 
-  console.log("\n2. 노드 삽입 (insertAfter)");
-  DDL.insertAfter(2, 5);
-  DDL.print(); // 결과: 1 <-> 2 <-> 5 <-> 3
+console.log("\n2. 노드 삽입 (insertAfter)");
+DDL.insertAfter(2, 5);
+DDL.print(); // 결과: 1 <-> 2 <-> 5 <-> 3
 
-  console.log("\n3. 노드 삭제 (removeNode)");
-  DDL.removeNode(2);
-  DDL.print(); // 결과: 1 <-> 5 <-> 3
-  DDL.printReverse(); // 결과: 3 <-> 5 <-> 1
+console.log("\n3. 노드 삭제 (removeNode)");
+DDL.removeNode(2);
+DDL.print(); // 결과: 1 <-> 5 <-> 3
+DDL.printReverse(); // 결과: 3 <-> 5 <-> 1
 
-  DDL.removeNode(1); // head 삭제
-  DDL.print(); // 결과: 5 <-> 3
+DDL.removeNode(1); // head 삭제
+DDL.print(); // 결과: 5 <-> 3
 
-  DDL.addToHead(7);
-  DDL.removeNode(3); // tail 삭제
-  DDL.print(); // 결과: 7 <-> 5
+DDL.addToHead(7);
+DDL.removeNode(3); // tail 삭제
+DDL.print(); // 결과: 7 <-> 5
 
-  console.log("\n--- DoublyLinkedList 실행 예시 종료 ---");
-}
-
-if (require.main === module) {
-  runDoublyLinkedListExample();
-}
+console.log("\n--- DoublyLinkedList 실행 예시 종료 ---");

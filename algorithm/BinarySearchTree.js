@@ -40,8 +40,7 @@ class BinarySearchTree {
             return;
           }
           currentNode = currentNode.rightChild;
-        } else {
-          // 중복 값은 삽입하지 않음 (또는 다른 처리 방식 선택 가능)
+        } else { // 중복 값은 삽입하지 않음
           return;
         }
       }
@@ -119,8 +118,6 @@ class BinarySearchTree {
       nodeToRemove.data = successor.data;
 
       // successor 노드를 제거 (successor는 자식이 없거나 오른쪽 자식 하나만 가짐)
-      // 이 부분은 재귀적으로 remove를 호출하거나, successor의 제거 로직을 직접 구현
-      // 여기서는 successor가 1개 이하의 자식을 가진다는 것을 이용하여 직접 처리
       if (successor.parent.leftChild === successor) {
         successor.parent.leftChild = successor.rightChild;
       } else {
@@ -150,47 +147,41 @@ class BinarySearchTree {
 }
 
 // --- 실행 예시 코드 ---
-function runBinarySearchTreeExample() {
-  console.log("--- BinarySearchTree 실행 예시 시작 ---");
+console.log("--- BinarySearchTree 실행 예시 시작 ---");
 
-  const bst = new BinarySearchTree();
+const bst = new BinarySearchTree();
 
-  console.log("\n1. 노드 삽입 (insert)");
-  bst.insert(10);
-  bst.insert(5);
-  bst.insert(15);
-  bst.insert(3);
-  bst.insert(7);
-  bst.insert(12);
-  bst.insert(18);
-  bst.printInOrder(); // 결과: 3 5 7 10 12 15 18
+console.log("\n1. 노드 삽입 (insert)");
+bst.insert(10);
+bst.insert(5);
+bst.insert(15);
+bst.insert(3);
+bst.insert(7);
+bst.insert(12);
+bst.insert(18);
+bst.printInOrder(); // 결과: 3 5 7 10 12 15 18
 
-  console.log("\n2. 노드 찾기 (find)");
-  let foundNode = bst.find(7);
-  console.log("7을 찾았습니다:", foundNode ? foundNode.data : "찾을 수 없음"); // 결과: 7
-  foundNode = bst.find(99);
-  console.log("99를 찾았습니다:", foundNode ? foundNode.data : "찾을 수 없음"); // 결과: 찾을 수 없음
+console.log("\n2. 노드 찾기 (find)");
+let foundNode = bst.find(7);
+console.log("7을 찾았습니다:", foundNode ? foundNode.data : "찾을 수 없음"); // 결과: 7
+foundNode = bst.find(99);
+console.log("99를 찾았습니다:", foundNode ? foundNode.data : "찾을 수 없음"); // 결과: 찾을 수 없음
 
-  console.log("\n3. 노드 삭제 (remove)");
-  console.log("Leaf Node (3) 삭제:");
-  bst.remove(3);
-  bst.printInOrder(); // 결과: 5 7 10 12 15 18
+console.log("\n3. 노드 삭제 (remove)");
+console.log("Leaf Node (3) 삭제:");
+bst.remove(3);
+bst.printInOrder(); // 결과: 5 7 10 12 15 18
 
-  console.log("One Child Node (15) 삭제:");
-  bst.remove(15); // 15는 18이라는 하나의 자식만 가짐
-  bst.printInOrder(); // 결과: 5 7 10 12 18
+console.log("One Child Node (15) 삭제:");
+bst.remove(15); // 15는 18이라는 하나의 자식만 가짐
+bst.printInOrder(); // 결과: 5 7 10 12 18
 
-  console.log("Two Children Node (10) 삭제:");
-  bst.remove(10); // 10은 두 자식 (5, 12)을 가짐
-  bst.printInOrder(); // 결과: 5 7 12 18 (successor 12로 교체)
+console.log("Two Children Node (10) 삭제:");
+bst.remove(10); // 10은 두 자식 (5, 12)을 가짐
+bst.printInOrder(); // 결과: 5 7 12 18 (successor 12로 교체)
 
-  console.log("루트 노드 (5) 삭제:");
-  bst.remove(5);
-  bst.printInOrder(); // 결과: 7 12 18
+console.log("루트 노드 (5) 삭제:");
+bst.remove(5);
+bst.printInOrder(); // 결과: 7 12 18
 
-  console.log("\n--- BinarySearchTree 실행 예시 종료 ---");
-}
-
-if (require.main === module) {
-  runBinarySearchTreeExample();
-}
+console.log("\n--- BinarySearchTree 실행 예시 종료 ---");
