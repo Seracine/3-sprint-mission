@@ -168,15 +168,15 @@ foundNode = bst.find(99);
 console.log("99를 찾았습니다:", foundNode ? foundNode.data : "찾을 수 없음"); // 결과: 찾을 수 없음
 
 console.log("\n3. 노드 삭제 (remove)");
-console.log("Leaf Node (3) 삭제:");
+console.log("리프 노드 (3) 삭제:");
 bst.remove(3);
 bst.printInOrder(); // 결과: 5 7 10 12 15 18
 
-console.log("One Child Node (15) 삭제:");
+console.log("하나의 자식을 가진 노드 (15) 삭제:");
 bst.remove(15); // 15는 18이라는 하나의 자식만 가짐
 bst.printInOrder(); // 결과: 5 7 10 12 18
 
-console.log("Two Children Node (10) 삭제:");
+console.log("두 자식을 가진 노드 (10) 삭제:");
 bst.remove(10); // 10은 두 자식 (5, 12)을 가짐
 bst.printInOrder(); // 결과: 5 7 12 18 (successor 12로 교체)
 
